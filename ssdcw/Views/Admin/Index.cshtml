@@ -1,0 +1,53 @@
+﻿@model IEnumerable<ssdcw.Models.User>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>All users</h1>
+
+<a class="btn btn-primary" href="admin/createuser" role="button">Create new user</a>
+<a class="btn btn-primary" href="admin/createrole" role="button">Create new role</a>
+@{string controller = "Admin";}
+<div>
+    <table class="table table-striped">
+
+        <tr class="table-info">
+            <th>@Html.DisplayName("First Name")</th>
+            <th>@Html.DisplayName("Last Name")</th>
+            <th>@Html.DisplayName("Email")</th>            
+        </tr>
+        @foreach (var item in Model)
+        {
+    <tr>
+        <td>
+            @Html.DisplayFor(m => item.FirstName)
+        </td>
+        <td>
+            @Html.DisplayFor(m => item.LastName)
+        </td>
+        <td>
+            @Html.DisplayFor(m => item.Email)
+        </td>        
+        <td style="width@150px">
+            <div class="btn-group" role="group">
+                <a type="button" class="btn btn-primary" asp-controller="Admin" asp-action="Edit" asp-route-id="@item.Id">
+                    Edit
+                </a>
+
+                <a type="button" class="btn btn-success" asp-controller="Admin" asp-action="Details" asp-route-id="@item.Id">
+                    Details
+                </a>
+                <a type="button" class="btn btn-danger" asp-controller="Admin" asp-action="Delete" asp-route-id="@item.Id">
+                    Delete
+                </a>
+                <a type="button" class="btn btn-danger" asp-controller="Admin" asp-action="ChangeUserRole" asp-route-id="@item.Id">
+                    Change Role
+                </a>
+            </div>
+
+        </td>
+
+    </tr>
+        }
+    </table>
+</div>

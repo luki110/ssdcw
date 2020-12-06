@@ -1,0 +1,56 @@
+﻿@model ssdcw.Models.ViewModels.ChangeRoleVM
+
+@{
+    ViewData["Title"] = "ChangeUserRole";
+}
+
+    <h1>Change User Role</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="ChangeUserRole">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input asp-for="UserId" type="hidden" />
+            <div class="form-group">
+                <label asp-for="user.Email" class="control-label"></label>
+                <input asp-for="user.Email" class="form-control" disabled />
+                <span asp-validation-for="user.Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="user.FirstName" class="control-label"></label>
+                <input asp-for="user.FirstName" class="form-control" disabled />
+                <span asp-validation-for="user.FirstName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="user.LastName" class="control-label"></label>
+                <input asp-for="user.LastName" class="form-control" disabled />
+                <span asp-validation-for="user.LastName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="previousRoleName" class="control-label"></label>
+                <input asp-for="previousRoleName" class="form-control" readonly />
+                <span asp-validation-for="previousRoleName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="newRole" class="control-label"></label>
+                <select asp-for="newRole" asp-items="@(new SelectList(Model.Rolenames))">
+                </select>
+                <span asp-validation-for="newRole" class="text-danger"></span>
+            </div>
+
+           
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-success"/>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,43 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UserSecretsId>aspnet-ssdcw-4238552A-830C-4654-9282-D67CDACCC65F</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Data\Migrations\20201130213744_Initial.cs" />
+    <Compile Remove="Data\Migrations\20201130213744_Initial.Designer.cs" />
+    <Compile Remove="Data\Migrations\20201130214013_Initial2.cs" />
+    <Compile Remove="Data\Migrations\20201130214013_Initial2.Designer.cs" />
+    <Compile Remove="Data\Migrations\20201202221521_addedComments2.cs" />
+    <Compile Remove="Data\Migrations\20201202221521_addedComments2.Designer.cs" />
+    <Compile Remove="Data\Migrations\20201202222038_addedComments2.cs" />
+    <Compile Remove="Data\Migrations\20201202222038_addedComments2.Designer.cs" />
+    <Compile Remove="Data\Migrations\20201203002820_addedComments3.cs" />
+    <Compile Remove="Data\Migrations\20201203002820_addedComments3.Designer.cs" />
+    <Compile Remove="Data\Migrations\20201203002944_addedComments3.cs" />
+    <Compile Remove="Data\Migrations\20201203002944_addedComments3.Designer.cs" />
+    <Compile Remove="Data\Migrations\20201203003129_addedComments3.cs" />
+    <Compile Remove="Data\Migrations\20201203003129_addedComments3.Designer.cs" />
+    <Compile Remove="Data\Migrations\20201203003347_addedComments3.cs" />
+    <Compile Remove="Data\Migrations\20201203003347_addedComments3.Designer.cs" />
+    <Compile Remove="Data\Migrations\20201203153028_addedRoleName.cs" />
+    <Compile Remove="Data\Migrations\20201203153028_addedRoleName.Designer.cs" />
+    <Compile Remove="Data\Migrations\20201203153221_addedRoleName.cs" />
+    <Compile Remove="Data\Migrations\20201203153221_addedRoleName.Designer.cs" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="3.1.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="3.1.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="3.1.10" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.1" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="5.0.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.4" />
+  </ItemGroup>
+
+</Project>
