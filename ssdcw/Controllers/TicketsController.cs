@@ -118,14 +118,14 @@ namespace ssdcw.Controllers
             return View(comment.TicketId);
         }
 
-        [Authorize(Roles = "Admin, Tester")]
+        
         // GET: Tickets/Create
         [HttpGet]
         public async Task<IActionResult> Create()
         {
 
             CreateTicketVM model = new CreateTicketVM();
-            var users = await GetDevelopersAndTesters();
+            var users = await GetDevelopers();
 
             model.users = users;
             return View(model);
@@ -134,7 +134,7 @@ namespace ssdcw.Controllers
         // POST: Tickets/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [Authorize(Roles = "Admin, Tester")]
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(CreateTicketVM model)
@@ -157,7 +157,7 @@ namespace ssdcw.Controllers
                 else
                 {
                     ViewData["Error"] = "Please select a value from dropdown list";
-                    var users = await GetDevelopersAndTesters();
+                    var users = await GetDevelopers();
 
                     model.users = users;
                     return View(model);
@@ -169,7 +169,7 @@ namespace ssdcw.Controllers
                 else
                 {
                     ViewData["Error"] = "Please select a value from dropdown list";
-                    var users = await GetDevelopersAndTesters();
+                    var users = await GetDevelopers();
                     model.users = users;
                     return View(model);
                 }
@@ -295,7 +295,7 @@ namespace ssdcw.Controllers
             var user = await _userManager.FindByIdAsync(userId);
             return user;
         }
-        private string GetUserRole() => _httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.Role);
+        //private string GetUserRole() => _httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.Role);
 
         private bool TypeEnumExists(string name)
         {
@@ -325,7 +325,7 @@ namespace ssdcw.Controllers
             else
                 return false;
         }
-        private async Task<List<User>> GetDevelopersAndTesters()
+        private async Task<List<User>> GetDevelopers()
         {
             var users = await _userManager.Users.ToListAsync();
 
@@ -340,5 +340,7 @@ namespace ssdcw.Controllers
             }
             return devs;
         }
+
+
     }
 }

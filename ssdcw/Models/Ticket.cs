@@ -60,5 +60,34 @@ namespace ssdcw.Models
 
         public List<Comment> Comments { get; set; }
 
+
+        public static bool TypeEnumExists(string name)
+        {
+            if (name.Equals("Development") || name.Equals("Testing") || name.Equals("Production"))
+            {
+                return true;
+            }
+            else
+                return false;
+        }
+
+        public static bool PriorityEnumExists(string name)
+        {
+            if (name.Equals("Low") || name.Equals("Medium") || name.Equals("High"))
+            {
+                return true;
+            }
+            else
+                return false;
+        }
+        public static bool StatusEnumExists(string name)
+        {
+            if (name.Equals("Open") || name.Equals("In_Progress") || name.Equals("Closed"))
+            {
+                return true;
+            }
+            else
+                return false;
+        }
     }
 }

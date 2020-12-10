@@ -69,6 +69,13 @@ namespace Identity.IdentityPolicy
                     Description = "This password is on a common passwords list, please choose something more complex"
                 });
             }
+            if (password.ToLower().Contains("pass"))
+            {
+                errors.Add(new IdentityError
+                {
+                    Description = "This password is on a common passwords list, please choose something more complex"
+                });
+            }
             return errors.Count == 0 ? IdentityResult.Success : IdentityResult.Failed(errors.ToArray());
         }
     }

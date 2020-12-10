@@ -1,6 +1,5 @@
 C:\Users\lukas\source\repos\ssdcw\ssdcw\bin\Debug\netcoreapp3.1\appsettings.Development.json
 C:\Users\lukas\source\repos\ssdcw\ssdcw\bin\Debug\netcoreapp3.1\appsettings.json
-C:\Users\lukas\source\repos\ssdcw\ssdcw\bin\Debug\netcoreapp3.1\Properties\launchSettings.json
 C:\Users\lukas\source\repos\ssdcw\ssdcw\bin\Debug\netcoreapp3.1\ssdcw.StaticWebAssets.xml
 C:\Users\lukas\source\repos\ssdcw\ssdcw\bin\Debug\netcoreapp3.1\ssdcw.exe
 C:\Users\lukas\source\repos\ssdcw\ssdcw\bin\Debug\netcoreapp3.1\ssdcw.deps.json
@@ -244,3 +243,6 @@ C:\Users\lukas\source\repos\ssdcw\ssdcw\obj\Debug\netcoreapp3.1\ssdcw.MvcApplica
 C:\Users\lukas\source\repos\ssdcw\ssdcw\obj\Debug\netcoreapp3.1\ssdcw.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\lukas\source\repos\ssdcw\ssdcw\obj\Debug\netcoreapp3.1\Razor\Views\Shared\NotFound.cshtml.g.cs
 C:\Users\lukas\source\repos\ssdcw\ssdcw\obj\Debug\netcoreapp3.1\Razor\Views\Shared\NotFound2.cshtml.g.cs
+C:\Users\lukas\source\repos\ssdcw\ssdcw\obj\Debug\netcoreapp3.1\ssdcw.csproj.CoreCompileInputs.cache
+C:\Users\lukas\source\repos\ssdcw\ssdcw\obj\Debug\netcoreapp3.1\scopedcss\bundle\ssdcw.styles.css
+C:\Users\lukas\source\repos\ssdcw\ssdcw\obj\Debug\netcoreapp3.1\ssdcw.genruntimeconfig.cache
