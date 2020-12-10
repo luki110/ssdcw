@@ -23,15 +23,20 @@ namespace ssdcw.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
+        //public ViewResult Exception()
+        //{
+        //    throw new System.NullReferenceException();
+        //}
+
+        public ViewResult Error()
         {
             return View();
         }
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
+        //[ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        //public IActionResult Error()
+        //{
+        //    return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        //}      
     }
 }

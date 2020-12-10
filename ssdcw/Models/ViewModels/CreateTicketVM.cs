@@ -1,64 +1,59 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ssdcw.Models
+namespace ssdcw.Models.ViewModels
 {
-    public class Ticket
+    public class CreateTicketVM
     {
         public enum Priority
         {
-            Low, 
+            Low,
             Medium,
             High
         }
 
         public enum Status
         {
-            Open,           
-            In_progress,            
+            Open,
+            In_progress,
             Closed
 
         }
-       
+
         public enum Type
         {
             Development,
             Testing,
             Production
         }
-
-        [Key]
-        public int Id { get; set; }
-
-        [Display(Name ="Created at")]
         public DateTime DateCreated { get; set; }
 
+        [Required]
         [Display(Name = "Ticket type")]
         public Type TicketType { get; set; }
 
         [Display(Name = "Status")]
         public Status TicketStatus { get; set; }
 
+        [Required]
         [Display(Name = "Priority")]
         public Priority TicketPriority { get; set; }
 
+        [Required]
         public string Description { get; set; }
 
-        public Ticket()
+        public List<User> users { get; set; }
+
+        public CreateTicketVM()
         {
-            Comments = new List<Comment>();
+            users = new List<User>();
         }
-
-        public virtual User Author { get; set; }
-
-        [Display(Name = "Assigned to")]
-        public virtual User UserAssigned { get; set; }
-
-        public List<Comment> Comments { get; set; }
+        [Required]
+        public string userAssigned { get; set; }
+        public string Author { get; set; }
 
     }
 }

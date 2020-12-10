@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -13,32 +14,33 @@ using ssdcw.Models.ViewModels;
 
 namespace ssdcw.Controllers
 {
-
+    [Authorize(Roles = "Admin")]
     public class AdminController : Controller
     {
 
         private readonly ApplicationDbContext _context;
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly UserManager<User> _userManager;
-        private readonly IHttpContextAccessor _httpContextAccessor;
+        private readonly IHttpContextAccessor _httpContextAccessor; 
+        private IPasswordHasher<User> _passwordHasher;
 
         public AdminController(
             ApplicationDbContext context,
             UserManager<User> userManager,
             RoleManager<IdentityRole> roleManager,
+            IPasswordHasher<User> passwordHasher,
             IHttpContextAccessor httpContextAccessor)
         {
             _context = context; 
             _userManager = userManager;
             _roleManager = roleManager;
             _httpContextAccessor = httpContextAccessor;
+            _passwordHasher = passwordHasher;
         }
 
         public IActionResult Index()
-        {
-            var users = _userManager.Users.ToList();
-            
-            return View(users);
+        {     
+            return View(_userManager.Users);
         }
 
         public async Task<IActionResult> CreateUser()
@@ -61,28 +63,92 @@ namespace ssdcw.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new User {
+                var user = new User
+                {
 
                     UserName = model.Email,
                     Email = model.Email,
                     FirstName = model.FirstName,
-                    LastName = model.LastName,                     
+                    LastName = model.LastName,
                     Rolename = model.Rolename,
                     EmailConfirmed = true
-                    
+
                 };
-                var result = await _userManager.CreateAsync(user, model.Password);
-                
+                IdentityResult result = await _userManager.CreateAsync(user, model.Password);
+
                 if (result.Succeeded)
                 {
                     await _userManager.AddToRoleAsync(user, model.Rolename);
                     return RedirectToAction(nameof(Index));
-                }                
+                }
+                else
+                {
+                    foreach (IdentityError error in result.Errors)
+                        ModelState.AddModelError("", error.Description);
+                }
             }
-                return View();
+                var roles = _roleManager.Roles.ToList();
+                var list = new List<string>();
+                foreach (var role in roles)
+                {
+                    list.Add(role.Name);
+                }
+                model.Roles = list;
+            return View(model);
         }
 
         public async Task<IActionResult> Edit(string Id)
+        {
+            var user = await _userManager.FindByIdAsync(Id);
+            CreateUserViewModel model = new CreateUserViewModel();
+            model.Email = user.Email;
+            model.FirstName = user.FirstName;
+            model.LastName = user.LastName;            
+            return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(string id, string email, string password, string FirstName, string LastName)
+        {
+            User user = await _userManager.FindByIdAsync(id);
+            if (user != null)
+            {
+                if (!string.IsNullOrEmpty(email))
+                    user.Email = email;
+                else
+                    ModelState.AddModelError("", "First Name cannot be empty");
+
+                if (!string.IsNullOrEmpty(FirstName))
+                    user.FirstName = FirstName;
+                else
+                    ModelState.AddModelError("", "First Name cannot be empty");
+
+                if (!string.IsNullOrEmpty(LastName))
+                    user.LastName = LastName;
+                else
+                    ModelState.AddModelError("", "Last Name cannot be empty");
+
+                if (!string.IsNullOrEmpty(password))
+                    user.PasswordHash = _passwordHasher.HashPassword(user, password);
+                else
+                    ModelState.AddModelError("", "Password cannot be empty");
+
+                if (!string.IsNullOrEmpty(email) && !string.IsNullOrEmpty(password))
+                {
+                    IdentityResult result = await _userManager.UpdateAsync(user);
+                    if (result.Succeeded)
+                        return RedirectToAction("Index");
+                    else
+                        Errors(result);
+                }
+            }
+            else
+                ModelState.AddModelError("", "User Not Found");
+            return View(user);
+        }
+
+
+        public async Task<IActionResult> DeleteUser(string Id)
         {
             var user = await _userManager.FindByIdAsync(Id);
             return View(user);
@@ -90,21 +156,21 @@ namespace ssdcw.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(User user)
+        public async Task<IActionResult> DeleteUser(User user)
         {
             var userFromDb = await _userManager.FindByIdAsync(user.Id);
 
-            userFromDb = user;
-            var result = await _userManager.UpdateAsync(user);
+            //userFromDb = user;
+            var result = await _userManager.DeleteAsync(userFromDb);
 
-                if (result.Succeeded)
-                {                    
-                    return RedirectToAction(nameof(Index));
-                }
+            if (result.Succeeded)
+            {
+                return RedirectToAction(nameof(Index));
+            }
             return View();
         }
-            
-        
+
+
 
         public async Task<IActionResult> CreateRole()
         {
@@ -175,6 +241,10 @@ namespace ssdcw.Controllers
             return user;
         }
         private string GetUserRole() => _httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.Role);
-
+        private void Errors(IdentityResult result)
+        {
+            foreach (IdentityError error in result.Errors)
+                ModelState.AddModelError("", error.Description);
+        }
     }
 }

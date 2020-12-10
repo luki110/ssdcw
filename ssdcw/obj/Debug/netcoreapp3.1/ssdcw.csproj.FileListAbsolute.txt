@@ -172,11 +172,8 @@ C:\Users\lukas\source\repos\ssdcw\ssdcw\bin\Debug\netcoreapp3.1\runtimes\win\lib
 C:\Users\lukas\source\repos\ssdcw\ssdcw\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
 C:\Users\lukas\source\repos\ssdcw\ssdcw\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp2.1\System.Security.Principal.Windows.dll
 C:\Users\lukas\source\repos\ssdcw\ssdcw\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.1\System.Security.Principal.Windows.dll
-C:\Users\lukas\source\repos\ssdcw\ssdcw\obj\Debug\netcoreapp3.1\ssdcw.csprojAssemblyReference.cache
 C:\Users\lukas\source\repos\ssdcw\ssdcw\obj\Debug\netcoreapp3.1\staticwebassets\ssdcw.StaticWebAssets.Manifest.cache
 C:\Users\lukas\source\repos\ssdcw\ssdcw\obj\Debug\netcoreapp3.1\staticwebassets\ssdcw.StaticWebAssets.xml
-C:\Users\lukas\source\repos\ssdcw\ssdcw\obj\Debug\netcoreapp3.1\ssdcw.MvcApplicationPartsAssemblyInfo.cs
-C:\Users\lukas\source\repos\ssdcw\ssdcw\obj\Debug\netcoreapp3.1\ssdcw.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\lukas\source\repos\ssdcw\ssdcw\obj\Debug\netcoreapp3.1\ssdcw.RazorAssemblyInfo.cache
 C:\Users\lukas\source\repos\ssdcw\ssdcw\obj\Debug\netcoreapp3.1\ssdcw.RazorAssemblyInfo.cs
 C:\Users\lukas\source\repos\ssdcw\ssdcw\obj\Debug\netcoreapp3.1\ssdcw.AssemblyInfoInputs.cache
@@ -210,8 +207,10 @@ C:\Users\lukas\source\repos\ssdcw\ssdcw\obj\Debug\netcoreapp3.1\Razor\Areas\Iden
 C:\Users\lukas\source\repos\ssdcw\ssdcw\obj\Debug\netcoreapp3.1\Razor\Areas\Identity\Pages\_ValidationScriptsPartial.cshtml.g.cs
 C:\Users\lukas\source\repos\ssdcw\ssdcw\obj\Debug\netcoreapp3.1\Razor\Areas\Identity\Pages\_ViewImports.cshtml.g.cs
 C:\Users\lukas\source\repos\ssdcw\ssdcw\obj\Debug\netcoreapp3.1\Razor\Areas\Identity\Pages\_ViewStart.cshtml.g.cs
+C:\Users\lukas\source\repos\ssdcw\ssdcw\obj\Debug\netcoreapp3.1\Razor\Views\Admin\ChangeUserRole.cshtml.g.cs
 C:\Users\lukas\source\repos\ssdcw\ssdcw\obj\Debug\netcoreapp3.1\Razor\Views\Admin\CreateRole.cshtml.g.cs
 C:\Users\lukas\source\repos\ssdcw\ssdcw\obj\Debug\netcoreapp3.1\Razor\Views\Admin\CreateUser.cshtml.g.cs
+C:\Users\lukas\source\repos\ssdcw\ssdcw\obj\Debug\netcoreapp3.1\Razor\Views\Admin\DeleteUser.cshtml.g.cs
 C:\Users\lukas\source\repos\ssdcw\ssdcw\obj\Debug\netcoreapp3.1\Razor\Views\Admin\Edit.cshtml.g.cs
 C:\Users\lukas\source\repos\ssdcw\ssdcw\obj\Debug\netcoreapp3.1\Razor\Views\Admin\Index.cshtml.g.cs
 C:\Users\lukas\source\repos\ssdcw\ssdcw\obj\Debug\netcoreapp3.1\Razor\Views\Comments\Create.cshtml.g.cs
@@ -220,8 +219,6 @@ C:\Users\lukas\source\repos\ssdcw\ssdcw\obj\Debug\netcoreapp3.1\Razor\Views\Comm
 C:\Users\lukas\source\repos\ssdcw\ssdcw\obj\Debug\netcoreapp3.1\Razor\Views\Comments\Edit.cshtml.g.cs
 C:\Users\lukas\source\repos\ssdcw\ssdcw\obj\Debug\netcoreapp3.1\Razor\Views\Comments\Index.cshtml.g.cs
 C:\Users\lukas\source\repos\ssdcw\ssdcw\obj\Debug\netcoreapp3.1\Razor\Views\Home\Index.cshtml.g.cs
-C:\Users\lukas\source\repos\ssdcw\ssdcw\obj\Debug\netcoreapp3.1\Razor\Views\Home\Privacy.cshtml.g.cs
-C:\Users\lukas\source\repos\ssdcw\ssdcw\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Error.cshtml.g.cs
 C:\Users\lukas\source\repos\ssdcw\ssdcw\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_Layout.cshtml.g.cs
 C:\Users\lukas\source\repos\ssdcw\ssdcw\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_LoginPartial.cshtml.g.cs
 C:\Users\lukas\source\repos\ssdcw\ssdcw\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_TableButtonPartial.cshtml.g.cs
@@ -239,4 +236,11 @@ C:\Users\lukas\source\repos\ssdcw\ssdcw\obj\Debug\netcoreapp3.1\ssdcw.Views.pdb
 C:\Users\lukas\source\repos\ssdcw\ssdcw\obj\Debug\netcoreapp3.1\ssdcw.csproj.CopyComplete
 C:\Users\lukas\source\repos\ssdcw\ssdcw\obj\Debug\netcoreapp3.1\ssdcw.dll
 C:\Users\lukas\source\repos\ssdcw\ssdcw\obj\Debug\netcoreapp3.1\ssdcw.pdb
-C:\Users\lukas\source\repos\ssdcw\ssdcw\obj\Debug\netcoreapp3.1\Razor\Views\Admin\ChangeUserRole.cshtml.g.cs
+C:\Users\lukas\source\repos\ssdcw\ssdcw\obj\Debug\netcoreapp3.1\ssdcw.csprojAssemblyReference.cache
+C:\Users\lukas\source\repos\ssdcw\ssdcw\obj\Debug\netcoreapp3.1\Razor\Views\Tickets\_CommentsPartial.cshtml.g.cs
+C:\Users\lukas\source\repos\ssdcw\ssdcw\obj\Debug\netcoreapp3.1\Razor\Views\Tickets\_AddComment.cshtml.g.cs
+C:\Users\lukas\source\repos\ssdcw\ssdcw\obj\Debug\netcoreapp3.1\Razor\Views\Home\Error.cshtml.g.cs
+C:\Users\lukas\source\repos\ssdcw\ssdcw\obj\Debug\netcoreapp3.1\ssdcw.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\lukas\source\repos\ssdcw\ssdcw\obj\Debug\netcoreapp3.1\ssdcw.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\lukas\source\repos\ssdcw\ssdcw\obj\Debug\netcoreapp3.1\Razor\Views\Shared\NotFound.cshtml.g.cs
+C:\Users\lukas\source\repos\ssdcw\ssdcw\obj\Debug\netcoreapp3.1\Razor\Views\Shared\NotFound2.cshtml.g.cs

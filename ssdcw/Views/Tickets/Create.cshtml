@@ -1,9 +1,18 @@
-﻿@model ssdcw.Models.Ticket
+﻿@model ssdcw.Models.ViewModels.CreateTicketVM
 
 @{
     ViewData["Title"] = "Create";
 }
+@if (ViewData["Error"] != null)
+{
 
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong>Error</strong> @ViewData["Error"]
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+}
 <h1>Create</h1>
 
 <h4>Ticket</h4>
@@ -27,14 +36,16 @@
                 <span asp-validation-for="TicketPriority" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="UserAssigned" class="control-label"></label>
-                <select asp-for="UserAssigned" asp-items="@(new SelectList(ViewBag.message,"Email"))">
+                <label asp-for="userAssigned" class="control-label"></label>
+                <select asp-for="userAssigned" asp-items="@(new SelectList(Model.users))">
                 </select>
-                <span asp-validation-for="TicketPriority" class="text-danger"></span>
+                <input type="hidden" asp-for="userAssigned" />
+                <span asp-validation-for="userAssigned" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Description" class="control-label"></label>
-                <input asp-for="Description" class="form-control" />
+                <textarea asp-for="Description" rows="5" cols="40" class="form-control"></textarea>
+                @*<input asp-for="Description" class="form-control" />*@
                 <span asp-validation-for="Description" class="text-danger"></span>
             </div>
             <div class="form-group">

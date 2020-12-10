@@ -1,0 +1,50 @@
+﻿@model IEnumerable<ssdcw.Models.Comment>
+
+
+
+@{
+    var commentNumber = 0;
+
+    var commentCount = Model.Count();
+
+    if (commentCount == 0)
+    {
+        <div class="tab-space">
+            <p class="text-info">There are no comments yet. Be the first to comment.</p>
+        </div>
+    }
+}
+
+
+@foreach (var item in Model)
+{
+    <div class="row">
+       
+            <div class="col-md-9">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <strong>@item.User.FirstName @item.User.LastName</strong>
+                                    <p>
+                                        @Html.DisplayFor(modelItem => item.DatePosted)
+                                    </p>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        @Html.DisplayFor(modelItem => item.Content)
+                    </div>
+                    <div class="col-md-offset-2 col-md-2 text-center">
+
+                    </div>
+                </div>
+            </div>
+        
+    </div>
+    <hr />
+    <br />
+}

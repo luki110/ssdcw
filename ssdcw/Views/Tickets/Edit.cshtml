@@ -1,60 +1,33 @@
-﻿@model ssdcw.Models.Ticket
+﻿@model ssdcw.Models.ViewModels.EditTicketVM
 
 @{
     ViewData["Title"] = "Edit";
 }
 
-<h1>Edit</h1>
+<h1>Change status</h1>
 
-<h4>Ticket</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="Id" />
-
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>            
+            <input asp-for="Id" type="hidden" />
             <div class="form-group">
                 <label asp-for="TicketStatus" class="control-label"></label>
                 <select asp-for="TicketStatus" asp-items="Html.GetEnumSelectList<Ticket.Status>()">
                     <option selected="selected" value="">Please select</option>
                 </select>
                 <span asp-validation-for="TicketStatus" class="text-danger"></span>
-            </div>
+            </div>            
             <div class="form-group">
-                <label asp-for="TicketType" class="control-label"></label>
-                <select asp-for="TicketType" asp-items="Html.GetEnumSelectList<Ticket.Type>()">
-                    <option selected="selected" value="">Please select</option>
-                </select>
-                <span asp-validation-for="TicketType" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="TicketPriority" class="control-label"></label>
-                <select asp-for="TicketPriority" asp-items="Html.GetEnumSelectList<Ticket.Priority>()">
-                    <option selected="selected" value="">Please select</option>
-                </select>
-                <span asp-validation-for="TicketPriority" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="UserAssigned" class="control-label"></label>
-                <select asp-for="UserAssigned" asp-items="@(new SelectList(ViewBag.message,"Email"))">
-                </select>
-                <span asp-validation-for="TicketPriority" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Description" class="control-label"></label>
-                <input asp-for="Description" class="form-control" />
-                <span asp-validation-for="Description" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <input type="submit" value="Save" class="btn btn-success" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a class="btn btn-primary" asp-action="Index">Back to List</a>
 </div>
 
 @section Scripts {
