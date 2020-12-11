@@ -34,16 +34,34 @@
             @Html.DisplayFor(model => model.ticket.DateCreated)
         </dd>
         <dt class="col-sm-2">
+            Submitted By
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ticket.Author.FullName)
+        </dd>
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.ticket.TicketStatus)
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.ticket.TicketStatus)
         </dd>
         <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ticket.TicketType)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ticket.TicketType)
+        </dd>
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.ticket.TicketPriority)
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.ticket.TicketPriority)
+        </dd>
+        <dt class="col-sm-2">
+            Assigned To
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ticket.UserAssigned.FullName)
         </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.ticket.Description)

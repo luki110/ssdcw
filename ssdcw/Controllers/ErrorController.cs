@@ -16,6 +16,10 @@ namespace ssdcw.Controllers
                 case 404:
                     ViewBag.ErrorMessage = "Sorry, the resource you requested could not be found";
                     break;
+
+                case 500:
+                    ViewBag.ErrorMessage = "Sorry, we have some problems and can't do it now";
+                    break;
             }
 
             return View("NotFound");

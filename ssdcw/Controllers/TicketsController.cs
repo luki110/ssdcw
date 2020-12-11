@@ -74,48 +74,49 @@ namespace ssdcw.Controllers
         public async Task<IActionResult> Details([Bind("Content, TicketId")] Comment comment)
         {
             var ticket = await _context.Tickets.FirstOrDefaultAsync(x => x.Id == comment.TicketId);
-            if (ticket.TicketStatus.ToString() == "Closed")
+            if (ticket.TicketStatus.ToString() != "Closed")
             {
-                ViewData["Error"] = "You cannot post a comment on a closed ticket";
-                var ticketForModel = await _context.Tickets.Include(x => x.Comments).Include(x => x.Author).Include(x => x.UserAssigned)
-                .FirstOrDefaultAsync(m => m.Id == comment.TicketId);
-                if (ticket == null)
+                if (ModelState.IsValid)
                 {
-                    return NotFound();
+                    var user = await GetUser();
+                    comment.UserId = user.Id;
+                    comment.DatePosted = DateTime.Now;
+                    comment.User = user;
+
+                    comment.Ticket = ticket;
+                    comment.TicketId = ticket.Id;
+                    ticket.Comments.ToList().Add(comment);
+                    _context.Tickets.Update(ticket);
+                    _context.Add(comment);
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction("Details", comment.TicketId);
                 }
-                var comments = await _context.Comments.Include(x => x.User).Where(x => x.TicketId == comment.TicketId).ToListAsync();
-
-                TicketWithCommentsVM model = new TicketWithCommentsVM();
-
-                model.ticket = ticketForModel;
-                if (comments != null)
-                {
-                    model.comments = comments;
-                }
-                model.Datecreated = ticket.DateCreated;
-                model.author = ticket.Author;
-                model.userAssigned = ticket.UserAssigned;
-
-                return View(model);
-            }
-            var user = await GetUser();
-            comment.UserId = user.Id;
-            comment.DatePosted = DateTime.Now;
-            comment.User = user;
-
-            comment.Ticket = ticket;
-            comment.TicketId = ticket.Id;
-            ticket.Comments.ToList().Add(comment);
-
-            if (ModelState.IsValid)
-            {
-                _context.Tickets.Update(ticket);
-                _context.Add(comment);
-                await _context.SaveChangesAsync();
-                return RedirectToAction("Details", comment.TicketId);
+                
             }
 
-            return View(comment.TicketId);
+            //ViewData["Error"] = "You cannot post a comment on a closed ticket";
+            var ticketForModel = await _context.Tickets.Include(x => x.Comments).Include(x => x.Author).Include(x => x.UserAssigned)
+            .FirstOrDefaultAsync(m => m.Id == comment.TicketId);
+            if (ticket == null)
+            {
+                return NotFound();
+            }
+            var comments = await _context.Comments.Include(x => x.User).Where(x => x.TicketId == comment.TicketId).ToListAsync();
+
+            TicketWithCommentsVM model = new TicketWithCommentsVM();
+
+            model.ticket = ticketForModel;
+            if (comments != null)
+            {
+                model.comments = comments;
+            }
+            model.Datecreated = ticket.DateCreated;
+            model.author = ticket.Author;
+            model.userAssigned = ticket.UserAssigned;
+
+            return View(model);
+
+
         }
 
         

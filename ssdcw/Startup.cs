@@ -44,6 +44,15 @@ namespace ssdcw
                 opts.Password.RequireUppercase = true;
                 opts.Password.RequireDigit = true;
             });
+            services.ConfigureApplicationCookie(options =>
+            {
+                // Cookie settings
+                options.Cookie.HttpOnly = true;
+                options.ExpireTimeSpan = TimeSpan.FromMinutes(5);
+                options.LoginPath = "/Identity/Account/Login";
+                options.AccessDeniedPath = "/Identity/Account/AccessDenied";
+                options.SlidingExpiration = true;
+            });
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddControllersWithViews();
             services.AddRazorPages();
@@ -114,7 +123,7 @@ namespace ssdcw
                                     var admin = new User()
                                     {
                                         FirstName = "Admin",
-                                        LastName = "",
+                                        LastName = "Adam",
                                         Email = "admin@safari.com",
                                         EmailConfirmed = true,
                                         UserName = "admin@safari.com",

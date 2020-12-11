@@ -148,27 +148,27 @@ namespace ssdcw.Controllers
         }
 
 
-        public async Task<IActionResult> DeleteUser(string Id)
-        {
-            var user = await _userManager.FindByIdAsync(Id);
-            return View(user);
-        }
+        //public async Task<IActionResult> DeleteUser(string Id)
+        //{
+        //    var user = await _userManager.FindByIdAsync(Id);
+        //    return View(user);
+        //}
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteUser(User user)
-        {
-            var userFromDb = await _userManager.FindByIdAsync(user.Id);
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public async Task<IActionResult> DeleteUser(User user)
+        //{
+        //    var userFromDb = await _userManager.FindByIdAsync(user.Id);
 
-            //userFromDb = user;
-            var result = await _userManager.DeleteAsync(userFromDb);
+        //    //userFromDb = user;
+        //    var result = await _userManager.DeleteAsync(userFromDb);
 
-            if (result.Succeeded)
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            return View();
-        }
+        //    if (result.Succeeded)
+        //    {
+        //        return RedirectToAction(nameof(Index));
+        //    }
+        //    return View();
+        //}
 
 
 
