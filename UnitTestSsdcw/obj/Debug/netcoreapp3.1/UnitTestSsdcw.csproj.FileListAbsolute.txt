@@ -260,4 +260,3 @@ C:\Users\lukas\source\repos\ssdcw\UnitTestSsdcw\obj\Debug\netcoreapp3.1\UnitTest
 C:\Users\lukas\source\repos\ssdcw\UnitTestSsdcw\obj\Debug\netcoreapp3.1\UnitTestSsdcw.dll
 C:\Users\lukas\source\repos\ssdcw\UnitTestSsdcw\obj\Debug\netcoreapp3.1\UnitTestSsdcw.pdb
 C:\Users\lukas\source\repos\ssdcw\UnitTestSsdcw\obj\Debug\netcoreapp3.1\UnitTestSsdcw.genruntimeconfig.cache
-C:\Users\lukas\source\repos\ssdcw\UnitTestSsdcw\bin\Debug\netcoreapp3.1\ssdcw.StaticWebAssets.xml

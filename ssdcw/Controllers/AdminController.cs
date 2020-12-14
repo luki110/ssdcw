@@ -172,29 +172,30 @@ namespace ssdcw.Controllers
 
 
 
-        public async Task<IActionResult> CreateRole()
-        {
-            return View();
-        }
+        //public async Task<IActionResult> CreateRole()
+        //{
+        //    return View();
+        //}
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Required]string name)
-        {
-            if (ModelState.IsValid)
-            {
-                IdentityResult result = await _roleManager.CreateAsync(new IdentityRole(name));
-                if (result.Succeeded)
-                    return RedirectToAction("Index");
-                //else
-                //    Errors(result);
-            }
-            return View(name);
-        }
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public async Task<IActionResult> Create([Required]string name)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        IdentityResult result = await _roleManager.CreateAsync(new IdentityRole(name));
+        //        if (result.Succeeded)
+        //            return RedirectToAction("Index");
+        //        //else
+        //        //    Errors(result);
+        //    }
+        //    return View(name);
+        //}
 
         public async Task<IActionResult> ChangeUserRole(string id)
         {
-            var user = await _userManager.FindByIdAsync(id);
+           
+            var userToChange = await _userManager.FindByIdAsync(id);
 
             var roles = _roleManager.Roles.ToList();
             ChangeRoleVM model = new ChangeRoleVM();
@@ -203,8 +204,8 @@ namespace ssdcw.Controllers
             {
                 model.Rolenames.Add(role.Name);
             }
-            model.user = user;
-            model.previousRoleName = user.Rolename;
+            model.user = userToChange;
+            model.previousRoleName = userToChange.Rolename;
             model.UserId = id;
 
 
@@ -215,16 +216,30 @@ namespace ssdcw.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> ChangeUserRole(ChangeRoleVM model)
         {
-            var user = await _userManager.FindByIdAsync(model.UserId);
+
+            var userToChange = await _userManager.FindByIdAsync(model.UserId);
+            var user = GetUser();
+            if(user.Id == model.UserId)
+            {
+                ChangeRoleVM modelToReturn = new ChangeRoleVM(); 
+                var roles = _roleManager.Roles.ToList();
+                foreach (var role in roles)
+                {
+                    modelToReturn.Rolenames.Add(role.Name);
+                }
+                ViewData["Error"] = "You cannot change your own role";
+                return View(modelToReturn);
+            }
             if (ModelState.IsValid)
             {
-                user.Rolename = model.newRole;
-                _context.Users.Update(user);
-                var result = await _userManager.RemoveFromRoleAsync(user, model.previousRoleName);
+                
+                userToChange.Rolename = model.newRole;
+                _context.Users.Update(userToChange);
+                var result = await _userManager.RemoveFromRoleAsync(userToChange, model.previousRoleName);
 
                 if (result.Succeeded)
                 {
-                    await _userManager.AddToRoleAsync(user, model.newRole);
+                    await _userManager.AddToRoleAsync(userToChange, model.newRole);
                     _context.SaveChanges();
                     return RedirectToAction("Index");
                 }

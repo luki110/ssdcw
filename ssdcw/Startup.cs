@@ -33,6 +33,7 @@ namespace ssdcw
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("SafariDatabase")));
+            
             services.AddIdentity<User, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = true)
                  .AddDefaultTokenProviders()
                  .AddDefaultUI()
@@ -72,6 +73,11 @@ namespace ssdcw
                 app.UseStatusCodePagesWithRedirects("/Error/{0}");
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
+            }
+            using (var serviceScope = app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope())
+            {
+                var context = serviceScope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+                context.Database.Migrate();
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
@@ -130,7 +136,7 @@ namespace ssdcw
                                         Rolename = "Admin"
                                     };
 
-                                    var AddUser = userManager.CreateAsync(admin, "ComplexPass110#");
+                                    var AddUser = userManager.CreateAsync(admin, "Complex_Authentication110#");
                                     AddUser.Wait();
                                     if (AddUser.IsCompletedSuccessfully)
                                     {
